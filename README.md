@@ -1,6 +1,6 @@
 # Azure IaC Labs
 
-Infrastructure as Code labs built on Ubuntu using Azure CLI, Bicep, and (soon) Terraform as part of my cloud development learning path.
+Infrastructure as Code labs built on Ubuntu using Azure CLI, Bicep, and Terraform as part of my cloud development learning path.
 
 ## Project Goal
 
@@ -11,61 +11,84 @@ Build repeatable Azure infrastructure using code instead of manual portal clicks
 - Ubuntu Linux
 - Azure CLI
 - Bicep
+- Terraform
 - Git / GitHub
 
-## Current Lab: Bicep Storage Account Deployment
+---
 
-This lab uses a Bicep template to deploy an Azure Storage Account inside a Resource Group.
+# Labs Included
 
-### Resources Defined
+## 1. Bicep Storage Account Deployment
 
-- Azure Storage Account
-- Standard_LRS SKU
-- East US region
+Created an Azure Storage Account using Bicep with the following workflow:
 
-## Workflow Practiced
+1. Build template locally
+2. Lint template
+3. Validate against Azure
+4. Preview changes using `what-if`
+5. Deploy resource
+6. Verify creation
+7. Delete resource group after testing
 
-1. Write infrastructure in code (`main.bicep`)
-2. Build template locally
-3. Lint template for best practices
-4. Validate against Azure
-5. Preview changes with `what-if`
-6. Deploy resource
-7. Verify resource creation
-8. Delete resource group to avoid lingering costs
+### Skills Demonstrated
 
-## Commands Used
+- Azure-native IaC
+- Parameters / variables / outputs
+- Safe deployment workflow
+- Cost control through cleanup
 
-```bash
-az bicep build --file main.bicep
-az bicep lint --file main.bicep
-az deployment group validate --resource-group rg-bicep-lab --template-file main.bicep
-az deployment group what-if --resource-group rg-bicep-lab --template-file main.bicep
-az deployment group create --resource-group rg-bicep-lab --template-file main.bicep
-az group delete --name rg-bicep-lab --yes --no-wait
-```
+---
 
-## What I Learned
+## 2. Terraform Resource Group Deployment
 
-- How to define Azure resources with Bicep
-- How parameters, variables, resources, and outputs work
-- How to validate infrastructure before deployment
-- How to preview changes safely before applying them
-- How to clean up Azure resources to control cost
+Created an Azure Resource Group using Terraform with the following workflow:
 
-## Why This Matters
+1. `terraform init`
+2. `terraform validate`
+3. `terraform plan`
+4. `terraform apply`
+5. Verify resource
+6. `terraform destroy`
+
+### Skills Demonstrated
+
+- Provider-based IaC
+- Infrastructure planning before apply
+- State-managed deployments
+- Full resource lifecycle management
+
+---
+
+# Why This Matters
 
 Infrastructure as Code improves:
 
 - repeatability
 - version control
-- team collaboration
 - deployment safety
 - consistency across environments
+- team collaboration
 
-## Next Steps
+---
 
-- Add Terraform labs
+# Repository Structure
+
+```text
+azure-iac-labs/
+  bicep/
+    main.bicep
+  terraform/
+    resource-group/
+      main.tf
+  README.md
+```
+
+---
+
+# Next Steps
+
+- Add Terraform Storage Account lab
 - Add reusable Bicep modules
 - Add CI/CD pipeline deployments
-- Expand into networking resources
+- Add networking labs (VNets / NSGs)
+- Add remote Terraform state examples
