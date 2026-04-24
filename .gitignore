@@ -1,0 +1,19 @@
+# OS / editor
+.vscode/
+.idea/
+*.swp
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+terraform.tfvars
+*.auto.tfvars
+
+# Bicep / build output
+*.json
+
+# General
+.env
+*.log
