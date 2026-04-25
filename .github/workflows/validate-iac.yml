@@ -1,0 +1,44 @@
+name: Validate IaC
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate-bicep:
+    name: Validate Bicep Templates
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Bicep storage template
+        run: az bicep build --file bicep/main.bicep
+
+      - name: Build Bicep networking template
+        run: az bicep build --file bicep/networking/main.bicep
+
+  validate-terraform:
+    name: Validate Terraform Configurations
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: terraform/resource-group
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v4
+
+      - name: Terraform format check
+        run: terraform fmt -check -recursive
+
+      - name: Terraform init
+        run: terraform init -backend=false
+
+      - name: Terraform validate
+        run: terraform validate
