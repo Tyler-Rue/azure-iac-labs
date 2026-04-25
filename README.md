@@ -59,6 +59,38 @@ Created an Azure Resource Group using Terraform with the following workflow:
 
 ---
 
+## 3. Bicep Networking Lab
+
+Created core Azure networking resources using Bicep.
+
+### Resources Deployed
+
+- Virtual Network (VNet)
+- Subnet
+- Network Security Group (NSG)
+- Inbound HTTP allow rule (port 80)
+- NSG associated to subnet
+
+### Workflow Practiced
+
+1. Build template locally
+2. Lint template
+3. Validate against Azure
+4. Preview changes using `what-if`
+5. Deploy networking resources
+6. Verify resources with Azure CLI
+7. Delete resource group after testing
+
+### Skills Demonstrated
+
+- Azure networking fundamentals
+- CIDR addressing and subnet segmentation
+- Basic firewall rule management
+- Resource dependencies in Infrastructure as Code
+- Safe deployment workflow
+
+---
+
 # Why This Matters
 
 Infrastructure as Code improves:
@@ -77,6 +109,8 @@ Infrastructure as Code improves:
 azure-iac-labs/
   bicep/
     main.bicep
+    networking/
+      main.bicep
   terraform/
     resource-group/
       main.tf
