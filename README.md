@@ -49,7 +49,7 @@ Created an Azure Resource Group using Terraform with the following workflow:
 2. `terraform validate`
 3. `terraform plan`
 4. `terraform apply`
-5. Verify resource
+5. Verify resource group with Azure CLI
 6. `terraform destroy`
 
 ### Skills Demonstrated
@@ -113,6 +113,37 @@ Added a GitHub Actions pipeline that automatically validates Infrastructure as C
 
 ---
 
+## 5. Bicep Multi-Environment Lab
+
+Created a Bicep template that supports environment-based deployments for `dev`, `test`, and `prod`.
+
+### Resources Deployed
+
+- Azure Storage Account
+- Environment-specific naming
+- Environment-specific SKU selection
+- Resource tags for environment, project, and management source
+
+### Workflow Practiced
+
+1. Build template locally
+2. Lint template
+3. Validate environment-specific deployment
+4. Preview changes using `what-if`
+5. Deploy the `dev` environment
+6. Verify resource tags and SKU with Azure CLI
+7. Delete resource group after testing
+
+### Skills Demonstrated
+
+- Multi-environment infrastructure design
+- Bicep parameters and allowed values
+- Conditional configuration
+- Tagging strategy
+- Cost-conscious deployment practices
+
+---
+
 # Why This Matters
 
 Infrastructure as Code improves:
@@ -136,6 +167,8 @@ azure-iac-labs/
     main.bicep
     networking/
       main.bicep
+    environments/
+      main.bicep   
   terraform/
     resource-group/
       main.tf
