@@ -13,6 +13,8 @@ Build repeatable Azure infrastructure using code instead of manual portal clicks
 - Bicep
 - Terraform
 - Git / GitHub
+- GitHub Actions
+- YAML
 
 ---
 
@@ -91,6 +93,26 @@ Created core Azure networking resources using Bicep.
 
 ---
 
+## 4. CI/CD Validation Workflow
+
+Added a GitHub Actions pipeline that automatically validates Infrastructure as Code changes on every push and pull request.
+
+### Automated Checks
+
+- Bicep template build validation
+- Terraform formatting check
+- Terraform init
+- Terraform validate
+
+### Skills Demonstrated
+
+- CI/CD pipeline fundamentals
+- YAML workflow configuration
+- Automated quality gates
+- Shift-left validation practices
+
+---
+
 # Why This Matters
 
 Infrastructure as Code improves:
@@ -107,6 +129,9 @@ Infrastructure as Code improves:
 
 ```text
 azure-iac-labs/
+  .github/
+    workflows/
+      validate-iac.yml	
   bicep/
     main.bicep
     networking/
