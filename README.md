@@ -179,8 +179,9 @@ azure-iac-labs/
 
 # Next Steps
 
-- Add Terraform Storage Account lab
 - Add reusable Bicep modules
-- Add CI/CD pipeline deployments
-- Add networking labs (VNets / NSGs)
-- Add remote Terraform state examples
+- Add Terraform multi-environment storage lab
+- Add automated dev deployments with GitHub Actions
+- Add Azure Storage remote backend for Terraform state
+- Add monitoring / logging labs
+- Add advanced networking (NSGs, route tables, peering)
