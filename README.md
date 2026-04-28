@@ -144,6 +144,37 @@ Created a Bicep template that supports environment-based deployments for `dev`, 
 
 ---
 
+## 6. Reusable Bicep Modules Lab
+
+Refactored the multi-environment Bicep deployment to use a reusable storage account module.
+
+### Resources / Components Added
+
+- Reusable storage account module
+- Environment template using module composition
+- Shared tagging strategy
+- Environment-based SKU selection
+
+### Workflow Practiced
+
+1. Build and lint standalone module
+2. Refactor environment template to call module
+3. Validate modular deployment
+4. Preview changes using `what-if`
+5. Deploy the `dev` environment
+6. Verify resource tags and SKU with Azure CLI
+7. Delete resource group after testing
+
+### Skills Demonstrated
+
+- Bicep module design
+- Reusable Infrastructure as Code
+- Separation of concerns
+- Environment-based configuration
+- Maintainable IaC structure
+
+---
+
 # Why This Matters
 
 Infrastructure as Code improves:
@@ -168,7 +199,9 @@ azure-iac-labs/
     networking/
       main.bicep
     environments/
-      main.bicep   
+      main.bicep
+    modules/
+      storage-account.bicep
   terraform/
     resource-group/
       main.tf

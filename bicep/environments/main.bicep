@@ -15,20 +15,22 @@ var storageSku = environment == 'prod' ? 'Standard_GRS' : 'Standard_LRS'
 var storagePrefix = 'tr${environment}'
 var storageName = toLower('${storagePrefix}${uniqueString(resourceGroup().id)}')
 
-resource storage 'Microsoft.Storage/storageAccounts@2025-01-01' = {
-  name: storageName
-  location: location
-  sku: {
-    name: storageSku
-  }
-  kind: 'StorageV2'
-  tags: {
-    environment: environment
-    project: 'azure-iac-labs'
-    managedBy: 'bicep'
+var commonTags = {
+  environment: environment
+  project: 'azure-iac-labs'
+  managedBy: 'bicep'
+}
+
+module storageAccount '../modules/storage-account.bicep' = {
+  name: 'storage-${environment}'
+  params: {
+    storageName: storageName
+    location: location
+    skuName: storageSku
+    tags: commonTags
   }
 }
 
 output environmentName string = environment
-output storageAccountName string = storage.name
-output storageSkuName string = storage.sku.name
+output storageAccountName string = storageAccount.outputs.storageAccountName
+output storageSkuName string = storageSku
