@@ -1,6 +1,7 @@
+
 # Azure IaC Labs
 
-Infrastructure as Code labs built on Ubuntu using Azure CLI, Bicep, and Terraform as part of my cloud development learning path.
+Infrastructure as Code labs built on Ubuntu using Azure CLI, Bicep, Terraform, and GitHub Actions as part of my cloud development learning path.
 
 ## Project Goal
 
@@ -29,7 +30,7 @@ Created an Azure Storage Account using Bicep with the following workflow:
 3. Validate against Azure
 4. Preview changes using `what-if`
 5. Deploy resource
-6. Verify creation
+6. Verify resource with Azure CLI
 7. Delete resource group after testing
 
 ### Skills Demonstrated
@@ -175,6 +176,38 @@ Refactored the multi-environment Bicep deployment to use a reusable storage acco
 
 ---
 
+## 7. Terraform Multi-Environment Storage Lab
+
+Created a Terraform template that supports environment-based deployments for `dev`, `test`, and `prod`.
+
+### Resources Deployed
+
+- Azure Resource Group
+- Azure Storage Account
+- Environment-specific naming
+- Environment-specific storage replication selection
+- Resource tags for environment, project, and management source
+
+### Workflow Practiced
+
+1. `terraform init`
+2. `terraform fmt`
+3. `terraform validate`
+4. `terraform plan -var="environment=dev"`
+5. `terraform apply -var="environment=dev"`
+6. Verify resources with Azure CLI
+7. `terraform destroy -var="environment=dev"`
+
+### Skills Demonstrated
+
+- Terraform variables and validation
+- Terraform locals
+- Multi-environment infrastructure design
+- Tagging strategy
+- Full Terraform lifecycle management
+
+---
+
 # Why This Matters
 
 Infrastructure as Code improves:
@@ -184,6 +217,8 @@ Infrastructure as Code improves:
 - deployment safety
 - consistency across environments
 - team collaboration
+- faster feedback through automation
+- reusable architecture
 
 ---
 
@@ -193,7 +228,7 @@ Infrastructure as Code improves:
 azure-iac-labs/
   .github/
     workflows/
-      validate-iac.yml	
+      validate-iac.yml
   bicep/
     main.bicep
     networking/
@@ -205,6 +240,8 @@ azure-iac-labs/
   terraform/
     resource-group/
       main.tf
+    environments/
+      main.tf
   README.md
 ```
 
@@ -212,9 +249,9 @@ azure-iac-labs/
 
 # Next Steps
 
-- Add reusable Bicep modules
-- Add Terraform multi-environment storage lab
-- Add automated dev deployments with GitHub Actions
 - Add Azure Storage remote backend for Terraform state
+- Add automated dev deployments with GitHub Actions
+- Add Terraform networking lab
+- Add reusable Terraform modules
 - Add monitoring / logging labs
-- Add advanced networking (NSGs, route tables, peering)
+- Add advanced networking (route tables, peering, NSGs)
