@@ -1,11 +1,10 @@
-
 # Azure IaC Labs
 
 Infrastructure as Code labs built on Ubuntu using Azure CLI, Bicep, Terraform, and GitHub Actions as part of my cloud development learning path.
 
 ## Project Goal
 
-Build repeatable Azure infrastructure using code instead of manual portal clicks, while practicing validation, deployment previews, safe deployments, and cost-conscious cleanup habits.
+Build repeatable Azure infrastructure using code instead of manual portal clicks, while practicing validation, deployment previews, safe deployments, automation, reusable architecture, and cost-conscious cleanup habits.
 
 ## Technologies Used
 
@@ -208,6 +207,67 @@ Created a Terraform template that supports environment-based deployments for `de
 
 ---
 
+## 8. Terraform Remote State Lab
+
+Configured Terraform to use Azure Storage as a remote backend for state management.
+
+### Resources Deployed
+
+- Azure Storage Account (remote backend)
+- Blob Container for Terraform state
+- Remote state file stored in Azure
+
+### Workflow Practiced
+
+1. Create backend storage resources with Azure CLI
+2. Configure Terraform backend block
+3. Reinitialize Terraform with `terraform init -reconfigure`
+4. Apply infrastructure using remote state
+5. Verify state file exists in Azure Blob Storage
+
+### Skills Demonstrated
+
+- Terraform state management
+- Remote backend configuration
+- Azure Storage integration
+- Separation of infrastructure and state
+- Real-world Terraform workflow practices
+
+---
+
+## 9. Terraform Networking Lab
+
+Created Azure networking resources using Terraform with remote state.
+
+### Resources Deployed
+
+- Azure Resource Group
+- Virtual Network (VNet)
+- Subnet
+- Network Security Group (NSG)
+- NSG rule allowing HTTP traffic
+- NSG association to subnet
+
+### Workflow Practiced
+
+1. `terraform init` (remote backend)
+2. `terraform fmt`
+3. `terraform validate`
+4. `terraform plan -var="environment=dev"`
+5. `terraform apply -var="environment=dev"`
+6. Verify resources with Azure CLI
+7. `terraform destroy -var="environment=dev"`
+
+### Skills Demonstrated
+
+- Terraform networking configuration
+- Remote state usage
+- Resource relationships and dependencies
+- Network security concepts
+- Full Terraform lifecycle management
+
+---
+
 # Why This Matters
 
 Infrastructure as Code improves:
@@ -242,6 +302,8 @@ azure-iac-labs/
       main.tf
     environments/
       main.tf
+    networking/
+      main.tf
   README.md
 ```
 
@@ -249,9 +311,8 @@ azure-iac-labs/
 
 # Next Steps
 
-- Add Azure Storage remote backend for Terraform state
+- Assign RBAC roles for storage instead of using account keys
 - Add automated dev deployments with GitHub Actions
-- Add Terraform networking lab
 - Add reusable Terraform modules
-- Add monitoring / logging labs
-- Add advanced networking (route tables, peering, NSGs)
+- Add monitoring / logging labs (Azure Monitor)
+- Add advanced networking (route tables, peering)
