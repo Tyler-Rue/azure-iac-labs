@@ -1,0 +1,41 @@
+name: Deploy Dev Bicep Environment
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  deploy-dev:
+    name: Deploy Dev Environment
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Azure login with OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Run Bicep what-if
+        run: |
+          az deployment group what-if \
+            --resource-group rg-github-actions-dev \
+            --template-file bicep/environments/main.bicep \
+            --parameters environment=dev
+
+      - name: Deploy Bicep dev environment
+        run: |
+          az deployment group create \
+            --resource-group rg-github-actions-dev \
+            --template-file bicep/environments/main.bicep \
+            --parameters environment=dev
