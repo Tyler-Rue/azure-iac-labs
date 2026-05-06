@@ -12,9 +12,13 @@ Build repeatable Azure infrastructure using code instead of manual portal clicks
 - Azure CLI
 - Bicep
 - Terraform
+- Docker
+- Azure Container Registry (ACR)
+- Azure Container Apps
 - Git / GitHub
 - GitHub Actions
 - YAML
+- Python / Flask
 
 ---
 
@@ -268,6 +272,41 @@ Created Azure networking resources using Terraform with remote state.
 
 ---
 
+## 10. Azure Container Apps Flask Deployment Lab
+
+Containerized and deployed a Python Flask application to Azure Container Apps using Docker and Azure Container Registry.
+
+### Resources Deployed
+
+- Azure Container Registry (ACR)
+- Azure Container Apps Environment
+- Azure Container App
+- Azure Log Analytics Workspace
+- Public HTTPS ingress endpoint
+
+### Workflow Practiced
+
+1. Build Docker image locally
+2. Push image to Azure Container Registry
+3. Create Azure Container Apps environment
+4. Deploy Flask container image to Azure
+5. Configure external ingress
+6. Verify live application deployment in browser
+7. Scale application to zero for cost control
+8. Delete resource group after testing
+
+### Skills Demonstrated
+
+- Docker containerization
+- Azure Container Registry workflows
+- Azure Container Apps deployment
+- Cloud-hosted Python application deployment
+- Linux CLI operations
+- Troubleshooting cloud deployment failures
+- Resource lifecycle management
+
+---
+
 # Why This Matters
 
 Infrastructure as Code improves:
@@ -311,8 +350,9 @@ azure-iac-labs/
 
 # Next Steps
 
+- Complete GitHub Actions automated app deployment pipeline
 - Assign RBAC roles for storage instead of using account keys
-- Add automated dev deployments with GitHub Actions
 - Add reusable Terraform modules
-- Add monitoring / logging labs (Azure Monitor)
+- Add monitoring / logging labs with Azure Monitor
 - Add advanced networking (route tables, peering)
+- Add architecture diagrams for deployed environments
