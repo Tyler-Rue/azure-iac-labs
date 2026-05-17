@@ -4,7 +4,15 @@ Infrastructure as Code labs built on Ubuntu using Azure CLI, Bicep, Terraform, a
 
 ## Project Goal
 
-Build repeatable Azure infrastructure using code instead of manual portal clicks, while practicing validation, deployment previews, safe deployments, automation, reusable architecture, and cost-conscious cleanup habits.
+Build repeatable Azure infrastructure using code instead of manual portal clicks, while practicing:
+
+- Infrastructure as Code (IaC)
+- CI/CD automation
+- Security and RBAC
+- Monitoring and logging
+- Governance and cost management (FinOps)
+- Containerized application deployment
+- Troubleshooting and operational workflows
 
 ## Technologies Used
 
@@ -15,10 +23,14 @@ Build repeatable Azure infrastructure using code instead of manual portal clicks
 - Docker
 - Azure Container Registry (ACR)
 - Azure Container Apps
+- Azure Monitor
+- Log Analytics
 - Git / GitHub
 - GitHub Actions
 - YAML
-- Python / Flask
+- Python
+- Flask
+- Microsoft Entra ID (OIDC)
 
 ---
 
@@ -301,23 +313,68 @@ Containerized and deployed a Python Flask application to Azure Container Apps us
 - Azure Container Registry workflows
 - Azure Container Apps deployment
 - Cloud-hosted Python application deployment
+- Scale-to-zero cost control
 - Linux CLI operations
 - Troubleshooting cloud deployment failures
 - Resource lifecycle management
 
 ---
 
-# Why This Matters
+## 11. Monitoring and Logging Lab
 
-Infrastructure as Code improves:
+Created a Log Analytics workspace and connected Azure Container Apps to Azure Monitor. Generated application traffic, viewed live logs, and queried logs with Kusto Query Language (KQL).
 
-- repeatability
-- version control
-- deployment safety
-- consistency across environments
-- team collaboration
-- faster feedback through automation
-- reusable architecture
+### Skills Demonstrated
+- Azure Monitor fundamentals
+- Log Analytics workspaces
+- Container App log streaming
+- KQL querying
+- Troubleshooting and observability
+- Cost-aware cleanup
+
+---
+
+# Security and Automation Highlights
+
+## OIDC Authentication
+
+Configured GitHub Actions to authenticate to Azure using OpenID Connect (OIDC), eliminating the need to store passwords or client secrets.
+
+## Least Privilege RBAC
+
+Scoped service principal permissions to specific resource groups rather than granting broad subscription access.
+
+## Secrets Management
+
+Used GitHub Secrets for:
+- `AZURE_CLIENT_ID`
+- `AZURE_TENANT_ID`
+- `AZURE_SUBSCRIPTION_ID`
+
+Used GitHub Variables for non-sensitive values such as:
+- Resource group names
+- Container App names
+- Registry names
+
+---
+
+# Governance and FinOps Practices
+
+Throughout these labs, resources were:
+
+- Tagged for ownership and cost tracking
+- Scaled to zero where possible
+- Deleted after testing
+- Reviewed using Azure CLI before and after deployments
+
+Common tags used:
+
+- `Project`
+- `Environment`
+- `Owner`
+- `ManagedBy`
+- `CostCenter`
+- `AutoDelete`
 
 ---
 
@@ -328,6 +385,7 @@ azure-iac-labs/
   .github/
     workflows/
       validate-iac.yml
+      deploy-dev-bicep.yml
   bicep/
     main.bicep
     networking/
@@ -350,9 +408,11 @@ azure-iac-labs/
 
 # Next Steps
 
-- Complete GitHub Actions automated app deployment pipeline
-- Assign RBAC roles for storage instead of using account keys
+- Complete RBAC and Identity Lab
+- Add Governance and Cost Management (FinOps) Lab
 - Add reusable Terraform modules
-- Add monitoring / logging labs with Azure Monitor
+- Build Break/Fix Troubleshooting Lab Series
+- Re-test GitHub Actions automated Container Apps deployment
 - Add advanced networking (route tables, peering)
-- Add architecture diagrams for deployed environments
+- Create architecture diagrams for deployed environments
+
